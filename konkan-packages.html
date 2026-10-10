@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Konkan Packages | Exploring World</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#080b10;
+    color:white;
+    font-family:Arial,sans-serif;
+    min-height:100vh;
+}
+
+a{text-decoration:none}
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    background:
+      linear-gradient(rgba(4,9,14,.83),rgba(4,9,14,.92)),
+      url("https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1800&q=85")
+      center/cover;
+    z-index:-1;
+}
+
+nav{
+    height:70px;
+    padding:0 7%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:rgba(4,8,13,.85);
+    border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.logo span{color:#f5c542}
+
+.links{
+    display:flex;
+    gap:24px;
+}
+
+.links a{
+    color:#eee;
+    font-size:12px;
+}
+
+.links a:hover{color:#f5c542}
+
+.hero{
+    text-align:center;
+    padding:75px 20px 35px;
+}
+
+.hero small{
+    color:#f5c542;
+    letter-spacing:5px;
+    font-size:11px;
+}
+
+.hero h1{
+    font-family:Georgia,serif;
+    font-size:58px;
+    margin:15px 0;
+}
+
+.hero h1 span{color:#f5c542}
+
+.hero p{
+    max-width:650px;
+    margin:0 auto;
+    color:#ddd;
+    line-height:1.8;
+    font-size:13px;
+}
+
+.highlights{
+    display:flex;
+    justify-content:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-top:25px;
+}
+
+.highlights span{
+    padding:9px 17px;
+    border:1px solid rgba(245,197,66,.4);
+    border-radius:25px;
+    color:#f5c542;
+    font-size:11px;
+    background:rgba(245,197,66,.06);
+}
+
+.section-title{
+    text-align:center;
+    padding:40px 15px 25px;
+}
+
+.section-title small{
+    color:#f5c542;
+    letter-spacing:4px;
+    font-size:10px;
+}
+
+.section-title h2{
+    font-family:Georgia,serif;
+    font-size:35px;
+    margin-top:12px;
+}
+
+.section-title h2 span{color:#f5c542}
+
+.packages{
+    max-width:1200px;
+    width:90%;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+    padding-bottom:55px;
+}
+
+.package-card{
+    position:relative;
+    background:rgba(15,22,30,.96);
+    border:1px solid rgba(255,255,255,.14);
+    border-radius:17px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.package-card:hover{
+    transform:translateY(-7px);
+    border-color:#f5c542;
+}
+
+.package-card img{
+    width:100%;
+    height:205px;
+    object-fit:cover;
+    display:block;
+}
+
+.package-content{padding:24px}
+
+.package-content small{
+    color:#f5c542;
+    font-size:10px;
+    letter-spacing:2px;
+}
+
+.package-content h3{
+    font-family:Georgia,serif;
+    font-size:25px;
+    margin:12px 0;
+}
+
+.duration{
+    color:#ccc;
+    font-size:12px;
+    margin-bottom:15px;
+}
+
+.package-content ul{
+    list-style:none;
+    margin:15px 0 22px;
+}
+
+.package-content li{
+    color:#bbb;
+    font-size:12px;
+    margin-bottom:11px;
+}
+
+.package-content li::before{
+    content:"✓ ";
+    color:#f5c542;
+}
+
+.price{
+    color:#f5c542;
+    font-size:28px;
+    font-weight:bold;
+    margin-bottom:5px;
+}
+
+.price-note{
+    font-size:10px;
+    color:#888;
+    margin-bottom:20px;
+}
+
+.book-btn{
+    display:block;
+    text-align:center;
+    background:#f5c542;
+    color:#111;
+    padding:13px;
+    border-radius:30px;
+    font-size:11px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.book-btn:hover{
+    background:white;
+    transform:translateY(-2px);
+}
+
+.popular{
+    position:absolute;
+    top:15px;
+    right:15px;
+    background:#f5c542;
+    color:#111;
+    font-size:9px;
+    font-weight:bold;
+    padding:8px 12px;
+    border-radius:20px;
+    z-index:1;
+}
+
+.back{
+    display:block;
+    width:max-content;
+    margin:0 auto 50px;
+    color:#f5c542;
+    font-size:13px;
+}
+
+.back:hover{color:white}
+
+footer{
+    background:rgba(4,8,13,.92);
+    border-top:1px solid rgba(255,255,255,.1);
+    padding:27px 7%;
+    color:#888;
+    font-size:11px;
+    display:flex;
+    justify-content:space-between;
+}
+
+footer span{color:#f5c542}
+
+@media(max-width:950px){
+    .packages{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:650px){
+    nav{padding:0 4%}
+    .logo{font-size:17px}
+    .links{gap:10px}
+    .links a{font-size:10px}
+    .hero h1{font-size:40px}
+    .packages{grid-template-columns:1fr}
+    footer{flex-direction:column;text-align:center;gap:8px}
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">Exploring <span>World</span></div>
+    <div class="links">
+        <a href="index.html">Home</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="india.html">India</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <small>KONKAN • MAHARASHTRA</small>
+    <h1>Konkan <span>Packages</span></h1>
+    <p>
+        Discover the beauty of Maharashtra's coastline.
+        Experience beaches, historic sea forts, coastal
+        villages, scenic landscapes and delicious
+        Konkani cuisine.
+    </p>
+
+    <div class="highlights">
+        <span>Beautiful Beaches</span>
+        <span>Historic Forts</span>
+        <span>Coastal Villages</span>
+        <span>Nature & Culture</span>
+    </div>
+</section>
+
+<div class="section-title">
+    <small>CHOOSE YOUR EXPERIENCE</small>
+    <h2>Explore Our <span>Packages</span></h2>
+</div>
+
+<div class="packages">
+
+    <!-- PACKAGE 1 -->
+    <div class="package-card">
+        <img
+          src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85"
+          alt="Scenic beach">
+
+        <div class="package-content">
+            <small>PACKAGE 01</small>
+            <h3>Konkan Coastal Escape</h3>
+            <div class="duration">2 Nights / 3 Days</div>
+
+            <ul>
+                <li>Ganpatipule beach visit</li>
+                <li>Ratnagiri sightseeing</li>
+                <li>Coastal sunset experience</li>
+                <li>Comfortable accommodation</li>
+                <li>Breakfast included</li>
+            </ul>
+
+            <div class="price">₹6,999</div>
+            <div class="price-note">Indicative price per person</div>
+
+            <a href="booking.html?destination=Konkan&amp;package=Konkan%20Coastal%20Escape" class="book-btn">
+                BOOK NOW →
+            </a>
+        </div>
+    </div>
+
+    <!-- PACKAGE 2 -->
+    <div class="package-card">
+
+        <span class="popular">MOST POPULAR</span>
+
+        <img
+          src="https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=900&q=85"
+          alt="Green tropical landscape">
+
+        <div class="package-content">
+            <small>PACKAGE 02</small>
+            <h3>Konkan Explorer</h3>
+            <div class="duration">3 Nights / 4 Days</div>
+
+            <ul>
+                <li>Malvan sightseeing</li>
+                <li>Sindhudurg Fort visit</li>
+                <li>Tarkarli beach experience</li>
+                <li>Coastal village exploration</li>
+                <li>Accommodation and breakfast</li>
+            </ul>
+
+            <div class="price">₹10,999</div>
+            <div class="price-note">Indicative price per person</div>
+
+            <a href="booking.html?destination=Konkan&amp;package=Konkan%20Explorer" class="book-btn">
+                BOOK NOW →
+            </a>
+        </div>
+    </div>
+
+    <!-- PACKAGE 3 -->
+    <div class="package-card">
+        <img
+          src="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=900&q=85"
+          alt="Beautiful coastal scenery">
+
+        <div class="package-content">
+            <small>PACKAGE 03</small>
+            <h3>Premium Konkan</h3>
+            <div class="duration">4 Nights / 5 Days</div>
+
+            <ul>
+                <li>Ratnagiri and Ganpatipule</li>
+                <li>Malvan and Tarkarli</li>
+                <li>Selected premium accommodation</li>
+                <li>Scenic coastal sightseeing</li>
+                <li>Breakfast and planned transfers</li>
+            </ul>
+
+            <div class="price">₹16,999</div>
+            <div class="price-note">Indicative price per person</div>
+
+            <a href="booking.html?destination=Konkan&amp;package=Premium%20Konkan" class="book-btn">
+                BOOK NOW →
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<a href="india.html" class="back">
+    ← BACK TO EXPLORE INDIA
+</a>
+
+<footer>
+    <div>Exploring <span>World</span></div>
+    <div>Discover Maharashtra's Coastline</div>
+    <div>© 2026 Exploring World</div>
+</footer>
+
+</body>
+</html>

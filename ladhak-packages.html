@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Ladakh Packages | Exploring World</title>
+
+<style>
+
+/* =========================
+   BASIC SETTINGS
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial, Helvetica, sans-serif;
+    color:white;
+    min-height:100vh;
+    background:#080b10;
+}
+
+/* =========================
+   LADAKH BACKGROUND
+========================= */
+
+body::before{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-2;
+
+    background:
+    url("https://commons.wikimedia.org/wiki/Special:Redirect/file/Pangong%20lake%2C%20Ladakh.jpg")
+    center/cover no-repeat;
+}
+
+/* DARK OVERLAY */
+
+body::after{
+    content:"";
+    position:fixed;
+    inset:0;
+    z-index:-1;
+    background:rgba(3,6,10,.68);
+}
+
+a{
+    text-decoration:none;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+nav{
+    height:64px;
+    padding:0 7%;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    background:rgba(4,7,12,.75);
+    backdrop-filter:blur(7px);
+
+    border-bottom:1px solid rgba(255,255,255,.12);
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+}
+
+.logo span{
+    color:#f5c542;
+}
+
+.nav-links{
+    display:flex;
+    gap:25px;
+}
+
+.nav-links a{
+    color:#eee;
+    font-size:12px;
+    transition:.3s;
+}
+
+.nav-links a:hover{
+    color:#f5c542;
+}
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+    min-height:215px;
+    padding:35px 7% 20px;
+
+    display:flex;
+    align-items:center;
+}
+
+.hero-content{
+    max-width:540px;
+}
+
+.location{
+    color:#f5c542;
+    font-size:10px;
+    letter-spacing:5px;
+    margin-bottom:10px;
+}
+
+.hero h1{
+    font-family:Georgia, "Times New Roman", serif;
+    font-size:48px;
+    margin-bottom:11px;
+    text-shadow:0 3px 12px #000;
+}
+
+.hero h1 span{
+    color:#f5c542;
+}
+
+.hero p{
+    max-width:500px;
+    font-size:12px;
+    line-height:1.7;
+    color:#eee;
+    text-shadow:0 2px 7px #000;
+}
+
+/* =========================
+   HIGHLIGHTS
+========================= */
+
+.highlights{
+    width:86%;
+    max-width:1120px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+
+    background:rgba(5,9,14,.72);
+    backdrop-filter:blur(8px);
+
+    border:1px solid rgba(255,255,255,.15);
+    border-radius:10px;
+
+    overflow:hidden;
+}
+
+.highlight{
+    padding:12px 7px;
+    text-align:center;
+    font-size:10px;
+
+    border-right:1px solid rgba(255,255,255,.13);
+}
+
+.highlight:last-child{
+    border-right:none;
+}
+
+.highlight span{
+    color:#f5c542;
+    margin-right:5px;
+}
+
+/* =========================
+   PACKAGE HEADING
+========================= */
+
+.package-heading{
+    text-align:center;
+    padding:20px 5% 16px;
+}
+
+.package-heading small{
+    color:#f5c542;
+    font-size:8px;
+    letter-spacing:4px;
+}
+
+.package-heading h2{
+    font-family:Georgia, "Times New Roman", serif;
+    font-size:30px;
+    margin-top:5px;
+    text-shadow:0 2px 8px #000;
+}
+
+.package-heading h2 span{
+    color:#f5c542;
+}
+
+/* =========================
+   PACKAGES
+========================= */
+
+.packages{
+    padding:0 7% 28px;
+}
+
+.package-grid{
+    max-width:1180px;
+    margin:auto;
+
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+/* PACKAGE CARD */
+
+.package-card{
+    position:relative;
+    overflow:hidden;
+
+    border-radius:14px;
+
+    background:rgba(7,12,18,.88);
+    backdrop-filter:blur(9px);
+
+    border:1px solid rgba(255,255,255,.16);
+
+    box-shadow:0 12px 30px rgba(0,0,0,.35);
+
+    transition:.3s;
+}
+
+.package-card:hover{
+    transform:translateY(-4px);
+    border-color:#f5c542;
+}
+
+.package-card.popular{
+    border-color:#f5c542;
+}
+
+/* POPULAR BADGE */
+
+.popular-badge{
+    position:absolute;
+    top:10px;
+    right:10px;
+    z-index:5;
+
+    background:#f5c542;
+    color:#111;
+
+    padding:6px 10px;
+    border-radius:20px;
+
+    font-size:8px;
+    font-weight:bold;
+}
+
+/* =========================
+   PACKAGE IMAGES
+========================= */
+
+.package-image{
+    height:155px;
+    overflow:hidden;
+    background:#111;
+}
+
+.package-image img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    display:block;
+
+    transition:.4s;
+}
+
+.package-card:hover img{
+    transform:scale(1.04);
+}
+
+/* =========================
+   PACKAGE CONTENT
+========================= */
+
+.package-content{
+    padding:17px;
+}
+
+.package-type{
+    color:#f5c542;
+    font-size:8px;
+    letter-spacing:3px;
+    margin-bottom:6px;
+}
+
+.package-content h3{
+    font-family:Georgia, "Times New Roman", serif;
+    font-size:21px;
+    margin-bottom:5px;
+}
+
+.duration{
+    font-size:11px;
+    color:#aaa;
+    margin-bottom:10px;
+}
+
+.price{
+    font-size:25px;
+    font-weight:bold;
+    color:#f5c542;
+}
+
+.per-person{
+    font-size:9px;
+    color:#999;
+    margin-bottom:11px;
+}
+
+/* FEATURES */
+
+.features{
+    list-style:none;
+
+    border-top:1px solid rgba(255,255,255,.13);
+
+    padding-top:8px;
+    margin-bottom:14px;
+}
+
+.features li{
+    font-size:11px;
+    padding:4px 0;
+}
+
+.features li::before{
+    content:"✓";
+    color:#f5c542;
+    margin-right:7px;
+}
+
+/* =========================
+   BOOK BUTTON
+========================= */
+
+.book-btn{
+    display:block;
+
+    text-align:center;
+
+    padding:11px;
+
+    border-radius:24px;
+
+    background:#f5c542;
+    color:#111;
+
+    font-size:10px;
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.book-btn:hover{
+    background:white;
+}
+
+/* =========================
+   BACK BUTTON
+========================= */
+
+.back-section{
+    text-align:center;
+    padding:5px 7% 35px;
+}
+
+.back-btn{
+    display:inline-block;
+
+    padding:11px 20px;
+
+    border:1px solid #f5c542;
+
+    color:#f5c542;
+
+    background:rgba(5,9,14,.70);
+
+    border-radius:25px;
+
+    font-size:10px;
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:#f5c542;
+    color:#111;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+    padding:27px 7%;
+
+    display:flex;
+    justify-content:space-between;
+
+    background:rgba(4,7,12,.83);
+
+    font-size:11px;
+    color:#aaa;
+}
+
+footer span{
+    color:#f5c542;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:850px){
+
+    .package-grid{
+        grid-template-columns:1fr;
+        max-width:560px;
+    }
+
+    .package-image{
+        height:220px;
+    }
+
+    .highlights{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:600px){
+
+    nav{
+        padding:0 4%;
+    }
+
+    .logo{
+        font-size:17px;
+    }
+
+    .nav-links{
+        gap:9px;
+    }
+
+    .nav-links a{
+        font-size:9px;
+    }
+
+    .hero{
+        min-height:195px;
+        padding:28px 6% 18px;
+    }
+
+    .hero h1{
+        font-size:36px;
+    }
+
+    .hero p{
+        font-size:11px;
+        max-width:330px;
+    }
+
+    .highlights{
+        width:90%;
+    }
+
+    .highlight{
+        font-size:9px;
+        padding:10px 5px;
+    }
+
+    .packages{
+        padding:0 5% 25px;
+    }
+
+    .package-image{
+        height:200px;
+    }
+
+    footer{
+        flex-direction:column;
+        text-align:center;
+        gap:7px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav>
+
+    <div class="logo">
+        Exploring <span>World</span>
+    </div>
+
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="india.html">India</a>
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     HERO
+========================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="location">
+            LADAKH • NORTHERN INDIA
+        </div>
+
+        <h1>
+            Ladakh <span>Packages</span>
+        </h1>
+
+        <p>
+            Travel through dramatic mountain passes, beautiful blue lakes,
+            remote valleys and unforgettable Himalayan landscapes in the
+            Land of High Passes.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     HIGHLIGHTS
+========================= -->
+
+<section class="highlights">
+
+    <div class="highlight">
+        <span>◆</span>
+        Mountains
+    </div>
+
+    <div class="highlight">
+        <span>★</span>
+        Road Trips
+    </div>
+
+    <div class="highlight">
+        <span>◇</span>
+        Adventure
+    </div>
+
+    <div class="highlight">
+        <span>●</span>
+        Nature
+    </div>
+
+</section>
+
+
+<!-- =========================
+     HEADING
+========================= -->
+
+<section class="package-heading">
+
+    <small>
+        CHOOSE YOUR JOURNEY
+    </small>
+
+    <h2>
+        Our <span>Ladakh Packages</span>
+    </h2>
+
+</section>
+
+
+<!-- =========================
+     PACKAGES
+========================= -->
+
+<section class="packages">
+
+<div class="package-grid">
+
+
+<!-- PACKAGE 1 -->
+
+<div class="package-card">
+
+    <div class="package-image">
+
+        <img
+        src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Leh%20Palace%2C%20Ladakh%2001.jpg"
+        alt="Leh Palace Ladakh">
+
+    </div>
+
+    <div class="package-content">
+
+        <div class="package-type">
+            MOUNTAIN ESCAPE
+        </div>
+
+        <h3>
+            Ladakh Explorer
+        </h3>
+
+        <div class="duration">
+            4 Nights / 5 Days
+        </div>
+
+        <div class="price">
+            ₹15,999
+        </div>
+
+        <div class="per-person">
+            per person
+        </div>
+
+        <ul class="features">
+            <li>3★ Leh Hotel</li>
+            <li>Breakfast Included</li>
+            <li>Local Sightseeing</li>
+            <li>Transfers</li>
+        </ul>
+
+        <a href="booking.html" class="book-btn">
+            BOOK NOW →
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- PACKAGE 2 -->
+
+<div class="package-card popular">
+
+    <div class="popular-badge">
+        ★ MOST POPULAR
+    </div>
+
+    <div class="package-image">
+
+        <img
+        src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Pangong%20lake%2C%20Ladakh.jpg"
+        alt="Pangong Lake Ladakh">
+
+    </div>
+
+    <div class="package-content">
+
+        <div class="package-type">
+            ADVENTURE
+        </div>
+
+        <h3>
+            Adventure Ladakh
+        </h3>
+
+        <div class="duration">
+            6 Nights / 7 Days
+        </div>
+
+        <div class="price">
+            ₹24,999
+        </div>
+
+        <div class="per-person">
+            per person
+        </div>
+
+        <ul class="features">
+            <li>Hotel + Camp Stay</li>
+            <li>Pangong Lake Tour</li>
+            <li>Nubra Valley</li>
+            <li>Private Vehicle</li>
+        </ul>
+
+        <a href="booking.html" class="book-btn">
+            BOOK NOW →
+        </a>
+
+    </div>
+
+</div>
+
+
+<!-- PACKAGE 3 -->
+
+<div class="package-card">
+
+    <div class="package-image">
+
+        <img
+        src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Pangong%20lake%2C%20Ladakh.jpg"
+        alt="Ladakh Landscape">
+
+    </div>
+
+    <div class="package-content">
+
+        <div class="package-type">
+            PREMIUM
+        </div>
+
+        <h3>
+            Premium Ladakh
+        </h3>
+
+        <div class="duration">
+            7 Nights / 8 Days
+        </div>
+
+        <div class="price">
+            ₹34,999
+        </div>
+
+        <div class="per-person">
+            per person
+        </div>
+
+        <ul class="features">
+            <li>Premium Hotel</li>
+            <li>Private Vehicle</li>
+            <li>Camp Stay</li>
+            <li>Breakfast & Dinner</li>
+        </ul>
+
+        <a href="booking.html" class="book-btn">
+            BOOK NOW →
+        </a>
+
+    </div>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     BACK BUTTON
+========================= -->
+
+<section class="back-section">
+
+    <a href="india.html" class="back-btn">
+        ← BACK TO INDIA DESTINATIONS
+    </a>
+
+</section>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
+
+    <div>
+        Exploring <span>World</span>
+    </div>
+
+    <div>
+        Ladakh • Northern India
+    </div>
+
+    <div>
+        © 2026 Exploring World
+    </div>
+
+</footer>
+
+
+</body>
+</html>

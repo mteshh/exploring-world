@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore India | Exploring World</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+    background:#080b10;
+    color:white;
+    font-family:Arial,sans-serif;
+}
+
+a{text-decoration:none}
+
+nav{
+    height:70px;
+    padding:0 7%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    background:#05080d;
+    border-bottom:1px solid #27303a;
+}
+
+.logo{
+    color:white;
+    font-size:23px;
+    font-weight:bold;
+}
+
+.logo span{color:#f5c542}
+
+.nav-links{
+    display:flex;
+    gap:24px;
+}
+
+.nav-links a{
+    color:#eee;
+    font-size:13px;
+}
+
+.nav-links a:hover{color:#f5c542}
+
+.hero{
+    min-height:490px;
+    padding:100px 8%;
+    display:flex;
+    align-items:center;
+    background:
+      linear-gradient(90deg,rgba(0,0,0,.83),rgba(0,0,0,.35)),
+      url("https://images.unsplash.com/photo-1598091383021-15ddea10925d?auto=format&fit=crop&w=1800&q=85")
+      center/cover;
+}
+
+.hero-content{max-width:700px}
+
+.hero small{
+    color:#f5c542;
+    letter-spacing:5px;
+}
+
+.hero h1{
+    font-family:Georgia,serif;
+    font-size:70px;
+    margin:15px 0;
+}
+
+.hero h1 span{color:#f5c542}
+
+.hero p{
+    color:#ddd;
+    line-height:1.9;
+    font-size:14px;
+    margin-bottom:28px;
+}
+
+.hero-btn,.package-btn{
+    display:inline-block;
+    background:#f5c542;
+    color:#111;
+    border-radius:30px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.hero-btn{padding:13px 25px;font-size:12px}
+.package-btn{padding:11px 20px;font-size:10px}
+
+.hero-btn:hover,.package-btn:hover{
+    background:white;
+    color:#111;
+    transform:translateY(-3px);
+}
+
+.heading{
+    text-align:center;
+    padding:70px 20px 45px;
+}
+
+.heading small{
+    display:block;
+    color:#f5c542;
+    letter-spacing:4px;
+    font-size:10px;
+    margin-bottom:12px;
+}
+
+.heading h2{
+    font-family:Georgia,serif;
+    font-size:43px;
+}
+
+.heading h2 span{color:#f5c542}
+
+.heading p{
+    color:#aaa;
+    font-size:13px;
+    margin:15px auto 0;
+    max-width:620px;
+    line-height:1.8;
+}
+
+.destination-badge{
+    background:#f5c542!important;
+    color:#111!important;
+    padding:10px 17px;
+    margin-bottom:18px;
+}
+
+.destinations{
+    width:88%;
+    max-width:1250px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:25px;
+    padding-bottom:90px;
+}
+
+.destination-card{
+    background:#101720;
+    border:1px solid #28313b;
+    border-radius:16px;
+    overflow:hidden;
+    transition:.3s;
+}
+
+.destination-card:hover{
+    border-color:#f5c542;
+    transform:translateY(-7px);
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+}
+
+.destination-card img{
+    width:100%;
+    height:220px;
+    object-fit:cover;
+    display:block;
+}
+
+.card-content{padding:24px}
+
+.number{
+    font-size:10px;
+    color:#f5c542;
+    letter-spacing:2px;
+    margin-bottom:10px;
+}
+
+.card-content h3{
+    font-family:Georgia,serif;
+    font-size:28px;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    color:#f5c542;
+    font-size:12px;
+    margin-bottom:12px;
+}
+
+.card-content p{
+    color:#aaa;
+    font-size:12px;
+    line-height:1.8;
+    margin-bottom:20px;
+}
+
+.jquery-reveal{
+    opacity:0;
+    transform:translateY(35px);
+    transition:opacity .7s ease,transform .7s ease;
+}
+
+.jquery-reveal.active{
+    opacity:1;
+    transform:translateY(0);
+}
+
+.glance{
+    background:#f0eadc;
+    color:#111;
+    text-align:center;
+    padding:60px 7%;
+}
+
+.glance h2{
+    font-family:Georgia,serif;
+    font-size:38px;
+    margin-bottom:30px;
+}
+
+.glance h2 span{color:#b58b22}
+
+.glance-grid{
+    max-width:1000px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:16px;
+}
+
+.glance-card{
+    background:white;
+    padding:25px 15px;
+    border-radius:12px;
+}
+
+.glance-card h3{
+    font-size:12px;
+    color:#ad8214;
+    margin-bottom:10px;
+}
+
+.glance-card p{
+    font-size:12px;
+    color:#555;
+}
+
+footer{
+    padding:30px 7%;
+    background:#05080d;
+    color:#888;
+    display:flex;
+    justify-content:space-between;
+    font-size:11px;
+}
+
+footer span{color:#f5c542}
+
+@media(max-width:900px){
+    .destinations{grid-template-columns:repeat(2,1fr)}
+    .glance-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+@media(max-width:600px){
+    nav{padding:0 4%}
+    .logo{font-size:17px}
+    .nav-links{gap:10px}
+    .nav-links a{font-size:10px}
+    .hero{min-height:400px;padding:65px 7%}
+    .hero h1{font-size:47px}
+    .heading h2{font-size:32px}
+    .destinations{width:92%;grid-template-columns:1fr}
+    .glance-grid{grid-template-columns:1fr}
+    footer{flex-direction:column;text-align:center;gap:10px}
+}
+
+@media(prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .jquery-reveal{
+        opacity:1;
+        transform:none;
+        transition:none;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">Exploring <span>World</span></div>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="destinations.html">Destinations</a>
+        <a href="india.html">India</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <small>INCREDIBLE INDIA</small>
+        <h1>Explore <span>India</span></h1>
+        <p>
+            Discover royal cities, peaceful beaches, ancient
+            monuments, beautiful mountains and unforgettable
+            journeys across India.
+        </p>
+        <a href="#destinations" class="hero-btn">
+            EXPLORE DESTINATIONS ↓
+        </a>
+    </div>
+</section>
+
+<section id="destinations">
+
+<div class="heading">
+    <span class="badge rounded-pill destination-badge">
+        TOP INDIAN DESTINATIONS
+    </span>
+    <small>EXPLORE THE COUNTRY</small>
+    <h2>Popular <span>Destinations</span></h2>
+    <p>
+        Explore our collection of Indian travel destinations
+        and discover packages designed for memorable trips.
+    </p>
+</div>
+
+<div class="destinations">
+
+    <!-- AGRA -->
+    <div class="destination-card jquery-reveal">
+        <img src="https://images.unsplash.com/photo-1564507592333-c60657eea523?auto=format&fit=crop&w=900&q=85" alt="Agra Taj Mahal">
+        <div class="card-content">
+            <div class="number">DESTINATION 01</div>
+            <h3>Agra</h3>
+            <div class="subtitle">The City of the Taj</div>
+            <p>Uttar Pradesh<br>Heritage • Family • Couples</p>
+            <a href="taj-packages.html" class="package-btn">VIEW PACKAGES →</a>
+        </div>
+    </div>
+
+    <!-- JAIPUR -->
+    <div class="destination-card jquery-reveal">
+        <img src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=900&q=85" alt="Jaipur">
+        <div class="card-content">
+            <div class="number">DESTINATION 02</div>
+            <h3>Jaipur</h3>
+            <div class="subtitle">The Pink City</div>
+            <p>Rajasthan<br>Heritage • Culture • Family</p>
+            <a href="jaipur-packages.html" class="package-btn">VIEW PACKAGES →</a>
+        </div>
+    </div>
+
+    <!-- KERALA -->
+    <div class="destination-card jquery-reveal">
+        <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=900&q=85" alt="Kerala">
+        <div class="card-content">
+            <div class="number">DESTINATION 03</div>
+            <h3>Kerala</h3>
+            <div class="subtitle">God's Own Country</div>
+            <p>South India<br>Nature • Backwaters • Family</p>
+            <a href="kerala-packages.html" class="package-btn">VIEW PACKAGES →</a>
+        </div>
+    </div>
+
+    <!-- GOA -->
+    <div class="destination-card jquery-reveal">
+        <img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=900&q=85" alt="Goa">
+        <div class="card-content">
+            <div class="number">DESTINATION 04</div>
+            <h3>Goa</h3>
+            <div class="subtitle">Beaches & Beyond</div>
+            <p>West India<br>Beaches • Friends • Relaxation</p>
+            <a href="goa-packages.html" class="package-btn">VIEW PACKAGES →</a>
+        </div>
+    </div>
+
+    <!-- MANALI -->
+    <div class="destination-card jquery-reveal">
+        <img src="https://images.unsplash.com/photo-1626621341517-bbf3d9990a23?auto=format&fit=crop&w=900&q=85" alt="Manali">
+        <div class="card-content">
+            <div class="number">DESTINATION 05</div>
+            <h3>Manali</h3>
+            <div class="subtitle">Mountains & Adventure</div>
+            <p>Himachal Pradesh<br>Mountains • Nature • Adventure</p>
+            <a href="manali-packages.html" class="package-btn">VIEW PACKAGES →</a>
+        </div>
+    </div>
+
+    <!-- VARANASI -->
+    <div class="destination-card jquery-reveal">
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Dashashwamedh%20Ghat%2C%20Ganga%2C%20Varanasi.jpg" alt="Varanasi">
+        <div class="card-content">
+            <div class="number">DESTINATION 06</div>
+            <h3>Varanasi</h3>
+            <div class="subtitle">The Spiritual City</div>
+            <p>Uttar Pradesh<br>Spiritual • Culture • Heritage</p>
+            <a href="varanasi-packages.html" class="package-btn">VIEW PACKAGES →</a>
+        </div>
+    </div>
+
+    <!-- LADAKH -->
+    <div class="destination-card jquery-reveal">
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Pangong%20lake%2C%20Ladakh.jpg" alt="Ladakh">
+        <div class="card-content">
+            <div class="number">DESTINATION 07</div>
+            <h3>Ladakh</h3>
+            <div class="subtitle">Land of High Passes</div>
+            <p>Northern India<br>Adventure • Road Trips • Nature</p>
+            <a href="ladhak-packages.html" class="package-btn">VIEW PACKAGES →</a>
+        </div>
+    </div>
+
+    <!-- RISHIKESH -->
+    <div class="destination-card jquery-reveal">
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Ram%20Jhoola%20at%20Rishikesh.jpg" alt="Rishikesh">
+        <div class="card-content">
+            <div class="number">DESTINATION 08</div>
+            <h3>Rishikesh</h3>
+            <div class="subtitle">Yoga & Adventure</div>
+            <p>Uttarakhand<br>Adventure • Spiritual • Nature</p>
+            <a href="rishikesh-packages.html" class="package-btn">VIEW PACKAGES →</a>
+        </div>
+    </div>
+
+    <!-- UDAIPUR -->
+    <div class="destination-card jquery-reveal">
+        <img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/City%20Palace%20of%20Udaipur.jpg" alt="Udaipur">
+        <div class="card-content">
+            <div class="number">DESTINATION 09</div>
+            <h3>Udaipur</h3>
+            <div class="subtitle">The City of Lakes</div>
+            <p>Rajasthan<br>Royal Heritage • Lakes • Palaces</p>
+            <a href="udaipur-packages.html" class="package-btn">VIEW PACKAGES →</a>
+        </div>
+    </div>
+
+    <!-- HAMPI -->
+    <div class="destination-card jquery-reveal">
+        <img src="https://images.unsplash.com/photo-1606293926075-69a00dbfde81?auto=format&fit=crop&w=900&q=85" alt="Hampi travel scenery">
+        <div class="card-content">
+            <div class="number">DESTINATION 10</div>
+            <h3>Hampi</h3>
+            <div class="subtitle">The Ancient Heritage City</div>
+            <p>Karnataka<br>Temples • History • Architecture</p>
+            <a href="gaurav.html" class="package-btn">VIEW PACKAGES →</a>
+        </div>
+    </div>
+
+    <!-- KONKAN -->
+    <div class="destination-card jquery-reveal">
+        <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=85" alt="Beach scenery representing Konkan coastal travel">
+        <div class="card-content">
+            <div class="number">DESTINATION 11</div>
+            <h3>Konkan</h3>
+            <div class="subtitle">The Coastal Paradise</div>
+            <p>Maharashtra<br>Beaches • Forts • Nature • Coastal Culture</p>
+            <a href="konkan-packages.html" class="package-btn">VIEW PACKAGES →</a>
+        </div>
+    </div>
+
+</div>
+</section>
+
+<section class="glance">
+    <h2>India At A <span>Glance</span></h2>
+    <div class="glance-grid">
+        <div class="glance-card">
+            <h3>BEST SEASON</h3>
+            <p>Varies by destination</p>
+        </div>
+        <div class="glance-card">
+            <h3>LANGUAGES</h3>
+            <p>Hindi, English & Regional Languages</p>
+        </div>
+        <div class="glance-card">
+            <h3>CURRENCY</h3>
+            <p>Indian Rupee (₹)</p>
+        </div>
+        <div class="glance-card">
+            <h3>IDEAL FOR</h3>
+            <p>Family • Friends • Couples • Adventure</p>
+        </div>
+    </div>
+</section>
+
+<footer>
+    <div>Exploring <span>World</span></div>
+    <div>One Country • Endless Journeys</div>
+    <div>© 2026 Exploring World</div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<script>
+$(document).ready(function(){
+
+    function revealDestinationCards(){
+        $(".jquery-reveal").each(function(){
+            const bottom = $(window).scrollTop() + $(window).height() - 50;
+
+            if(bottom > $(this).offset().top){
+                $(this).addClass("active");
+            }
+        });
+    }
+
+    revealDestinationCards();
+
+    $(window).on("scroll", revealDestinationCards);
+
+    $(".package-btn").hover(
+        function(){
+            $(this).text("EXPLORE PACKAGES →");
+        },
+        function(){
+            $(this).text("VIEW PACKAGES →");
+        }
+    );
+
+    $(".hero-btn").on("click",function(event){
+        event.preventDefault();
+        $("html,body").animate({
+            scrollTop:$("#destinations").offset().top
+        },800);
+    });
+
+});
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

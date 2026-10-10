@@ -1,0 +1,2665 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Exploring World | Explore India</title>
+
+
+    <!-- =====================================================
+         BOOTSTRAP CSS
+    ====================================================== -->
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+        rel="stylesheet">
+
+
+    <style>
+
+        /* =====================================================
+           RESET
+        ===================================================== */
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+        }
+
+
+        html{
+            scroll-behavior:smooth;
+        }
+
+
+        body{
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            color:#222;
+
+            background:#111;
+
+            overflow-x:hidden;
+        }
+
+
+        section{
+            scroll-margin-top:20px;
+        }
+
+
+
+        /* =====================================================
+           NAVIGATION
+        ===================================================== */
+
+        .navbar{
+
+            position:absolute;
+
+            top:0;
+            left:0;
+
+            width:100%;
+
+            padding:25px 6%;
+
+            display:flex;
+
+            justify-content:space-between;
+
+            align-items:center;
+
+            z-index:1000;
+        }
+
+
+        .logo{
+
+            color:white;
+
+            font-size:27px;
+
+            font-weight:bold;
+
+            letter-spacing:.5px;
+        }
+
+
+        .logo span{
+
+            color:#ffb703;
+        }
+
+
+        nav{
+
+            display:flex;
+
+            gap:28px;
+        }
+
+
+        nav a{
+
+            color:white;
+
+            text-decoration:none;
+
+            font-size:14px;
+
+            font-weight:500;
+
+            transition:.3s;
+        }
+
+
+        nav a:hover{
+
+            color:#ffb703;
+        }
+
+
+        nav a.active{
+
+            color:#ffb703;
+
+            border-bottom:
+                2px solid #ffb703;
+
+            padding-bottom:5px;
+        }
+
+
+
+        /* =====================================================
+           HERO
+        ===================================================== */
+
+        .home{
+
+            width:100%;
+
+            min-height:100vh;
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+            text-align:center;
+
+            padding:120px 8%;
+
+            color:white;
+
+            position:relative;
+
+
+            /*
+               DIFFERENT HOMEPAGE COVER IMAGE
+               Pangong Lake, Ladakh
+            */
+
+            background:
+
+                linear-gradient(
+                    rgba(0,0,0,.30),
+                    rgba(0,0,0,.65)
+                ),
+
+                url("https://commons.wikimedia.org/wiki/Special:Redirect/file/Pangong%20lake%2C%20Ladakh.jpg");
+
+
+            background-size:cover;
+
+            background-position:center;
+        }
+
+
+        .home::after{
+
+            content:"";
+
+            position:absolute;
+
+            bottom:0;
+            left:0;
+
+            width:100%;
+
+            height:180px;
+
+            background:
+                linear-gradient(
+                    transparent,
+                    rgba(8,11,16,.45)
+                );
+
+            pointer-events:none;
+        }
+
+
+        .home-content{
+
+            width:100%;
+
+            max-width:800px;
+
+            position:relative;
+
+            z-index:2;
+
+            animation:
+                heroAppear 1.2s ease;
+        }
+
+
+        @keyframes heroAppear{
+
+            from{
+
+                opacity:0;
+
+                transform:
+                    translateY(35px);
+            }
+
+
+            to{
+
+                opacity:1;
+
+                transform:
+                    translateY(0);
+            }
+        }
+
+
+
+        /* =====================================================
+           BOOTSTRAP COMPONENT CUSTOMIZATION
+        ===================================================== */
+
+        .hero-badge{
+
+            background:#ffb703 !important;
+
+            color:#111 !important;
+
+            padding:
+                9px 17px;
+
+            letter-spacing:2px;
+
+            font-size:10px;
+
+            margin-bottom:20px;
+
+            box-shadow:
+                0 6px 20px
+                rgba(0,0,0,.2);
+        }
+
+
+
+        .small-heading{
+
+            color:#ffb703;
+
+            font-size:13px;
+
+            font-weight:bold;
+
+            letter-spacing:5px;
+
+            margin-bottom:20px;
+        }
+
+
+        .home h1{
+
+            font-size:78px;
+
+            line-height:1.05;
+
+            margin-bottom:25px;
+
+            font-weight:700;
+        }
+
+
+        .home h1 span{
+
+            display:block;
+
+            color:#ffb703;
+        }
+
+
+        .description{
+
+            max-width:650px;
+
+            margin:
+                0 auto 32px;
+
+            color:#eee;
+
+            font-size:17px;
+
+            line-height:1.7;
+        }
+
+
+
+        /* =====================================================
+           BUTTONS
+        ===================================================== */
+
+        .buttons{
+
+            display:flex;
+
+            justify-content:center;
+
+            gap:15px;
+        }
+
+
+        /*
+           We use ew-btn instead of Bootstrap's .btn
+           so Bootstrap does not change our custom design.
+        */
+
+        .ew-btn{
+
+            display:inline-block;
+
+            padding:
+                14px 28px;
+
+            border-radius:30px;
+
+            text-decoration:none;
+
+            font-size:14px;
+
+            font-weight:bold;
+
+            transition:.3s;
+        }
+
+
+        .primary-btn{
+
+            background:#ffb703;
+
+            color:#111;
+        }
+
+
+        .primary-btn:hover{
+
+            background:#fb8500;
+
+            color:white;
+
+            transform:
+                translateY(-3px);
+
+            box-shadow:
+                0 10px 25px
+                rgba(251,133,0,.25);
+        }
+
+
+        .secondary-btn{
+
+            border:
+                1px solid white;
+
+            color:white;
+        }
+
+
+        .secondary-btn:hover{
+
+            background:white;
+
+            color:#111;
+
+            transform:
+                translateY(-3px);
+        }
+
+
+
+        /* =====================================================
+           SCROLL INDICATOR
+        ===================================================== */
+
+        .scroll-indicator{
+
+            position:absolute;
+
+            bottom:25px;
+
+            left:50%;
+
+            transform:
+                translateX(-50%);
+
+            color:#ddd;
+
+            font-size:11px;
+
+            letter-spacing:3px;
+
+            z-index:3;
+
+            animation:
+                bounce 2s infinite;
+        }
+
+
+        .scroll-indicator span{
+
+            display:block;
+
+            color:#ffb703;
+
+            font-size:20px;
+
+            margin-top:5px;
+        }
+
+
+        @keyframes bounce{
+
+            0%,
+            100%{
+
+                transform:
+                    translate(-50%,0);
+            }
+
+
+            50%{
+
+                transform:
+                    translate(-50%,8px);
+            }
+        }
+
+
+
+        /* =====================================================
+           GENERAL SECTION SETTINGS
+        ===================================================== */
+
+        .section-label{
+
+            color:#fb8500;
+
+            font-size:12px;
+
+            font-weight:bold;
+
+            letter-spacing:4px;
+
+            margin-bottom:15px;
+        }
+
+
+        .section-title{
+
+            font-size:48px;
+
+            line-height:1.1;
+
+            margin-bottom:20px;
+
+            font-weight:700;
+        }
+
+
+        .section-title span{
+
+            color:#fb8500;
+        }
+
+
+
+        /* =====================================================
+           JQUERY REVEAL ANIMATION
+        ===================================================== */
+
+        .reveal{
+
+            opacity:0;
+
+            transform:
+                translateY(45px);
+
+            transition:
+                opacity .8s ease,
+                transform .8s ease;
+        }
+
+
+        .reveal.active{
+
+            opacity:1;
+
+            transform:
+                translateY(0);
+        }
+
+
+        .reveal-left{
+
+            opacity:0;
+
+            transform:
+                translateX(-55px);
+
+            transition:
+                opacity .9s ease,
+                transform .9s ease;
+        }
+
+
+        .reveal-left.active{
+
+            opacity:1;
+
+            transform:
+                translateX(0);
+        }
+
+
+        .reveal-right{
+
+            opacity:0;
+
+            transform:
+                translateX(55px);
+
+            transition:
+                opacity .9s ease,
+                transform .9s ease;
+        }
+
+
+        .reveal-right.active{
+
+            opacity:1;
+
+            transform:
+                translateX(0);
+        }
+
+
+
+        /* =====================================================
+           ABOUT
+        ===================================================== */
+
+        #about{
+
+            min-height:85vh;
+
+            padding:
+                110px 9%;
+
+            display:flex;
+
+            align-items:center;
+
+            background:#f7f5ef;
+        }
+
+
+        .about-container{
+
+            width:100%;
+
+            max-width:1200px;
+
+            margin:auto;
+
+            display:grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:80px;
+
+            align-items:center;
+        }
+
+
+        .about-image{
+
+            height:500px;
+
+            border-radius:25px;
+
+            overflow:hidden;
+
+            position:relative;
+
+            box-shadow:
+                0 25px 60px
+                rgba(0,0,0,.18);
+        }
+
+
+        .about-image img{
+
+            width:100%;
+
+            height:100%;
+
+            object-fit:cover;
+
+            transition:.6s;
+        }
+
+
+        .about-image:hover img{
+
+            transform:
+                scale(1.05);
+        }
+
+
+        .about-image::after{
+
+            content:"";
+
+            position:absolute;
+
+            inset:15px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.45);
+
+            border-radius:18px;
+
+            pointer-events:none;
+        }
+
+
+        .about-text p{
+
+            color:#666;
+
+            font-size:16px;
+
+            line-height:1.9;
+
+            margin-bottom:25px;
+        }
+
+
+
+        /* =====================================================
+           SERVICES
+        ===================================================== */
+
+        #services{
+
+            padding:
+                110px 8%;
+
+            background:#111827;
+
+            color:white;
+
+            text-align:center;
+        }
+
+
+        .services-heading{
+
+            max-width:700px;
+
+            margin:
+                auto auto 55px;
+        }
+
+
+        .services-heading .section-title{
+
+            color:white;
+        }
+
+
+        .services-heading p{
+
+            color:#aeb4bf;
+
+            line-height:1.8;
+
+            font-size:15px;
+        }
+
+
+        .services-grid{
+
+            max-width:1150px;
+
+            margin:auto;
+
+            display:grid;
+
+            grid-template-columns:
+                repeat(3,1fr);
+
+            gap:25px;
+        }
+
+
+        .service-card{
+
+            min-height:280px;
+
+            padding:
+                40px 30px;
+
+            text-align:left;
+
+            border-radius:20px;
+
+            background:
+
+                linear-gradient(
+                    145deg,
+                    rgba(255,255,255,.08),
+                    rgba(255,255,255,.025)
+                );
+
+            border:
+                1px solid
+                rgba(255,255,255,.08);
+
+            transition:
+                transform .4s ease,
+                border-color .4s ease,
+                box-shadow .4s ease;
+        }
+
+
+        .service-card:nth-child(1){
+
+            transition-delay:.08s;
+        }
+
+
+        .service-card:nth-child(2){
+
+            transition-delay:.18s;
+        }
+
+
+        .service-card:nth-child(3){
+
+            transition-delay:.28s;
+        }
+
+
+        .service-card:hover{
+
+            transform:
+                translateY(-10px) !important;
+
+            border-color:
+                rgba(255,183,3,.55);
+
+            box-shadow:
+                0 20px 50px
+                rgba(0,0,0,.25);
+        }
+
+
+        .service-icon{
+
+            font-size:42px;
+
+            margin-bottom:25px;
+
+            transition:.35s;
+        }
+
+
+        .service-card:hover
+        .service-icon{
+
+            transform:
+                translateY(-5px)
+                scale(1.08);
+        }
+
+
+        .service-card h3{
+
+            font-size:21px;
+
+            margin-bottom:15px;
+
+            font-weight:600;
+        }
+
+
+        .service-card p{
+
+            color:#aeb4bf;
+
+            font-size:14px;
+
+            line-height:1.8;
+        }
+
+
+
+        /* =====================================================
+           GALLERY
+        ===================================================== */
+
+        #gallery{
+
+            padding:
+                110px 0;
+
+            background:#f7f5ef;
+        }
+
+
+        .gallery-heading{
+
+            text-align:center;
+
+            padding:
+                0 7%;
+
+            margin-bottom:50px;
+        }
+
+
+        .gallery-wrapper{
+
+            width:100%;
+
+            overflow-x:auto;
+
+            overflow-y:hidden;
+
+            padding:
+                10px 7% 30px;
+
+            cursor:grab;
+
+            scrollbar-width:thin;
+
+            scrollbar-color:
+                #ffb703
+                #ddd;
+        }
+
+
+        .gallery-wrapper:active{
+
+            cursor:grabbing;
+        }
+
+
+        .gallery-wrapper::-webkit-scrollbar{
+
+            height:7px;
+        }
+
+
+        .gallery-wrapper::-webkit-scrollbar-track{
+
+            background:#ddd;
+
+            border-radius:10px;
+        }
+
+
+        .gallery-wrapper::-webkit-scrollbar-thumb{
+
+            background:#ffb703;
+
+            border-radius:10px;
+        }
+
+
+        .gallery-track{
+
+            display:flex;
+
+            gap:20px;
+
+            width:max-content;
+        }
+
+
+        .gallery-item{
+
+            width:330px;
+
+            height:420px;
+
+            flex-shrink:0;
+
+            position:relative;
+
+            overflow:hidden;
+
+            border-radius:20px;
+
+            box-shadow:
+                0 15px 35px
+                rgba(0,0,0,.15);
+
+            transition:
+                opacity .75s ease,
+                transform .75s ease,
+                box-shadow .4s ease;
+        }
+
+
+        .gallery-item:nth-child(1){
+
+            transition-delay:.05s;
+        }
+
+
+        .gallery-item:nth-child(2){
+
+            transition-delay:.10s;
+        }
+
+
+        .gallery-item:nth-child(3){
+
+            transition-delay:.15s;
+        }
+
+
+        .gallery-item:nth-child(4){
+
+            transition-delay:.20s;
+        }
+
+
+        .gallery-item:nth-child(5){
+
+            transition-delay:.25s;
+        }
+
+
+        .gallery-item:nth-child(6){
+
+            transition-delay:.30s;
+        }
+
+
+        .gallery-item:nth-child(7){
+
+            transition-delay:.35s;
+        }
+
+
+        .gallery-item:nth-child(8){
+
+            transition-delay:.40s;
+        }
+
+
+        .gallery-item img{
+
+            width:100%;
+
+            height:100%;
+
+            object-fit:cover;
+
+            display:block;
+
+            transition:.6s;
+        }
+
+
+        .gallery-item:hover{
+
+            box-shadow:
+                0 22px 45px
+                rgba(0,0,0,.25);
+        }
+
+
+        .gallery-item:hover img{
+
+            transform:
+                scale(1.08);
+        }
+
+
+        .gallery-item::after{
+
+            content:"";
+
+            position:absolute;
+
+            inset:0;
+
+            background:
+
+                linear-gradient(
+                    transparent 48%,
+                    rgba(0,0,0,.80)
+                );
+
+            pointer-events:none;
+        }
+
+
+        .gallery-location{
+
+            position:absolute;
+
+            bottom:53px;
+
+            left:25px;
+
+            z-index:2;
+
+            color:#ffb703;
+
+            font-size:10px;
+
+            font-weight:bold;
+
+            letter-spacing:2px;
+        }
+
+
+        .gallery-name{
+
+            position:absolute;
+
+            bottom:25px;
+
+            left:25px;
+
+            z-index:2;
+
+            color:white;
+
+            font-size:18px;
+
+            font-weight:bold;
+        }
+
+
+
+        /* =====================================================
+           CONTACT
+        ===================================================== */
+
+        #contact{
+
+            min-height:75vh;
+
+            padding:
+                100px 8%;
+
+            color:white;
+
+            background:
+
+                linear-gradient(
+                    rgba(8,12,18,.91),
+                    rgba(8,12,18,.96)
+                ),
+
+                url("https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=2000&q=85");
+
+            background-size:cover;
+
+            background-position:center;
+        }
+
+
+        .contact-container{
+
+            max-width:1100px;
+
+            margin:auto;
+
+            display:grid;
+
+            grid-template-columns:
+                1fr 1fr;
+
+            gap:80px;
+
+            align-items:center;
+        }
+
+
+        .contact-text
+        .section-title{
+
+            color:white;
+        }
+
+
+        .contact-text p{
+
+            color:#aeb4bf;
+
+            line-height:1.8;
+
+            font-size:15px;
+
+            max-width:500px;
+
+            margin-bottom:35px;
+        }
+
+
+        .contact-details{
+
+            display:grid;
+
+            gap:20px;
+        }
+
+
+        .contact-detail{
+
+            display:flex;
+
+            align-items:center;
+
+            gap:15px;
+        }
+
+
+        .contact-detail-icon{
+
+            width:45px;
+
+            height:45px;
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+            border-radius:50%;
+
+            background:
+                rgba(255,183,3,.12);
+
+            color:#ffb703;
+
+            font-size:18px;
+
+            transition:.3s;
+        }
+
+
+        .contact-detail:hover
+        .contact-detail-icon{
+
+            transform:
+                scale(1.1);
+
+            background:
+                rgba(255,183,3,.22);
+        }
+
+
+        .contact-detail strong{
+
+            display:block;
+
+            font-size:14px;
+
+            margin-bottom:3px;
+        }
+
+
+        .contact-detail span{
+
+            color:#9da5b1;
+
+            font-size:13px;
+        }
+
+
+
+        /* =====================================================
+           CONTACT FORM
+        ===================================================== */
+
+        .contact-form{
+
+            padding:35px;
+
+            border-radius:22px;
+
+            background:
+                rgba(255,255,255,.06);
+
+            border:
+                1px solid
+                rgba(255,255,255,.1);
+
+            backdrop-filter:
+                blur(12px);
+
+            transition:.4s;
+        }
+
+
+        .contact-form:hover{
+
+            border-color:
+                rgba(255,183,3,.30);
+
+            box-shadow:
+                0 15px 45px
+                rgba(0,0,0,.15);
+        }
+
+
+        .contact-form h3{
+
+            font-size:24px;
+
+            margin-bottom:25px;
+        }
+
+
+        .input-group-custom{
+
+            margin-bottom:15px;
+        }
+
+
+        .input-group-custom input,
+        .input-group-custom textarea{
+
+            width:100%;
+
+            padding:
+                14px 16px;
+
+            border-radius:10px;
+
+            border:
+                1px solid
+                rgba(255,255,255,.15);
+
+            outline:none;
+
+            background:
+                rgba(0,0,0,.25);
+
+            color:white;
+
+            font-family:inherit;
+
+            transition:.3s;
+        }
+
+
+        .input-group-custom textarea{
+
+            height:110px;
+
+            resize:none;
+        }
+
+
+        .input-group-custom input:focus,
+        .input-group-custom textarea:focus{
+
+            border-color:#ffb703;
+
+            box-shadow:
+                0 0 0 3px
+                rgba(255,183,3,.08);
+        }
+
+
+        .send-btn{
+
+            width:100%;
+
+            border:none;
+
+            padding:14px;
+
+            border-radius:25px;
+
+            background:#ffb703;
+
+            color:#111;
+
+            font-weight:bold;
+
+            cursor:pointer;
+
+            transition:.3s;
+        }
+
+
+        .send-btn:hover{
+
+            background:#fb8500;
+
+            color:white;
+
+            transform:
+                translateY(-2px);
+        }
+
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .site-footer{
+
+            width:100%;
+
+            min-height:180px;
+
+            background:#080b10;
+
+            display:flex;
+
+            align-items:center;
+
+            justify-content:center;
+
+            text-align:center;
+
+            padding:
+                40px 20px;
+        }
+
+
+        .footer-content{
+
+            width:100%;
+
+            display:flex;
+
+            flex-direction:column;
+
+            align-items:center;
+
+            justify-content:center;
+        }
+
+
+        .footer-logo{
+
+            color:white;
+
+            font-size:20px;
+
+            font-weight:bold;
+
+            margin-bottom:8px;
+        }
+
+
+        .footer-logo span{
+
+            color:#ffb703;
+        }
+
+
+        .footer-tagline{
+
+            color:#777;
+
+            font-size:13px;
+
+            margin:
+                0 0 12px;
+        }
+
+
+        .copyright{
+
+            color:#666;
+
+            font-size:12px;
+
+            margin:0;
+
+            text-align:center;
+        }
+
+
+
+        /* =====================================================
+           TABLET
+        ===================================================== */
+
+        @media(max-width:900px){
+
+
+            .home h1{
+
+                font-size:62px;
+            }
+
+
+            .about-container,
+            .contact-container{
+
+                grid-template-columns:
+                    1fr;
+
+                gap:45px;
+            }
+
+
+            .about-image{
+
+                height:400px;
+            }
+
+
+            .services-grid{
+
+                grid-template-columns:
+                    1fr 1fr;
+            }
+        }
+
+
+
+        /* =====================================================
+           MOBILE
+        ===================================================== */
+
+        @media(max-width:650px){
+
+
+            .navbar{
+
+                padding:
+                    18px 20px;
+
+                flex-direction:column;
+
+                gap:15px;
+            }
+
+
+            nav{
+
+                gap:15px;
+            }
+
+
+            nav a{
+
+                font-size:12px;
+            }
+
+
+            .logo{
+
+                font-size:22px;
+            }
+
+
+            .home{
+
+                padding:
+                    150px 25px
+                    100px;
+            }
+
+
+            .home h1{
+
+                font-size:48px;
+            }
+
+
+            .description{
+
+                font-size:15px;
+            }
+
+
+            .buttons{
+
+                flex-direction:column;
+
+                align-items:center;
+            }
+
+
+            .section-title{
+
+                font-size:36px;
+            }
+
+
+            #about,
+            #services,
+            #contact{
+
+                padding:
+                    80px 22px;
+            }
+
+
+            #gallery{
+
+                padding:
+                    80px 0;
+            }
+
+
+            .about-image{
+
+                height:330px;
+            }
+
+
+            .services-grid{
+
+                grid-template-columns:
+                    1fr;
+            }
+
+
+            .gallery-wrapper{
+
+                padding-left:22px;
+
+                padding-right:22px;
+            }
+
+
+            .gallery-item{
+
+                width:270px;
+
+                height:350px;
+            }
+
+
+            .contact-form{
+
+                padding:25px;
+            }
+
+
+            .scroll-indicator{
+
+                display:none;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVIGATION
+===================================================== -->
+
+<header class="navbar">
+
+
+    <div class="logo">
+
+        Exploring <span>World</span>
+
+    </div>
+
+
+    <nav>
+
+
+        <a href="index.html"
+           class="active">
+
+            Home
+
+        </a>
+
+
+        <a href="#about">
+
+            About
+
+        </a>
+
+
+        <a href="destinations.html">
+
+            Destinations
+
+        </a>
+
+
+    </nav>
+
+
+</header>
+
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<main class="home">
+
+
+    <div class="home-content">
+
+
+        <!-- BOOTSTRAP BADGE COMPONENT -->
+
+        <span class="badge rounded-pill hero-badge">
+
+            EXPLORE INDIA
+
+        </span>
+
+
+        <p class="small-heading">
+
+            DISCOVER • EXPLORE • EXPERIENCE
+
+        </p>
+
+
+        <h1>
+
+            Discover Incredible
+
+            <span>India</span>
+
+        </h1>
+
+
+        <p class="description">
+
+            Journey through a land of mountains,
+            coastlines, colourful cities, peaceful
+            landscapes and centuries of culture.
+            Your journey across India starts here.
+
+        </p>
+
+
+        <div class="buttons">
+
+
+            <a href=http://127.0.0.1:5500/destinations.html
+               class="ew-btn primary-btn">
+
+                Explore India
+
+            </a>
+
+
+            <a href="#about"
+               class="ew-btn secondary-btn">
+
+                Learn More
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+
+    <div class="scroll-indicator">
+
+        SCROLL TO EXPLORE
+
+        <span>↓</span>
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section id="about">
+
+
+    <div class="about-container">
+
+
+        <div class="about-image reveal-left">
+
+
+            <img
+                src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Tea%20plantation%20munnar.jpg"
+                alt="Tea plantations in India">
+
+
+        </div>
+
+
+
+        <div class="about-text reveal-right">
+
+
+            <p class="section-label">
+
+                ABOUT EXPLORING WORLD
+
+            </p>
+
+
+            <h2 class="section-title">
+
+                Discover A Different
+
+                <span>Side Of India.</span>
+
+            </h2>
+
+
+            <p>
+
+                Exploring World is created for travellers
+                who want to experience the beauty, culture
+                and diversity found across India.
+
+            </p>
+
+
+            <p>
+
+                Travel through peaceful valleys, colourful
+                cities, historic landmarks, tropical
+                landscapes and mountain roads. Every
+                journey reveals something different.
+
+            </p>
+
+
+            <p>
+
+                Whether you are looking for adventure,
+                heritage, nature or a relaxing escape,
+                there is always another side of India
+                waiting to be explored.
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     SERVICES
+===================================================== -->
+
+<section id="services">
+
+
+    <div class="services-heading reveal">
+
+
+        <p class="section-label">
+
+            WHAT WE OFFER
+
+        </p>
+
+
+        <h2 class="section-title">
+
+            Travel Made
+
+            <span>Simple.</span>
+
+        </h2>
+
+
+        <p>
+
+            Everything you need to discover and plan
+            memorable journeys across India.
+
+        </p>
+
+
+    </div>
+
+
+
+    <div class="services-grid">
+
+
+        <div class="service-card reveal">
+
+
+            <div class="service-icon">
+
+                🧭
+
+            </div>
+
+
+            <h3>
+
+                Destination Planning
+
+            </h3>
+
+
+            <p>
+
+                Discover interesting destinations across
+                India and find useful information to help
+                you choose your next journey.
+
+            </p>
+
+
+        </div>
+
+
+
+        <div class="service-card reveal">
+
+
+            <div class="service-icon">
+
+                🏨
+
+            </div>
+
+
+            <h3>
+
+                Stay & Packages
+
+            </h3>
+
+
+            <p>
+
+                Explore travel packages with accommodation,
+                sightseeing and experiences designed for
+                different kinds of travellers.
+
+            </p>
+
+
+        </div>
+
+
+
+        <div class="service-card reveal">
+
+
+            <div class="service-icon">
+
+                🏔️
+
+            </div>
+
+
+            <h3>
+
+                Travel Experiences
+
+            </h3>
+
+
+            <p>
+
+                Experience mountains, beaches, heritage,
+                culture, spirituality and adventure across
+                different parts of India.
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     GALLERY
+===================================================== -->
+
+<section id="gallery">
+
+
+    <div class="gallery-heading reveal">
+
+
+        <p class="section-label">
+
+            TRAVEL MOMENTS
+
+        </p>
+
+
+        <h2 class="section-title">
+
+            Experience
+
+            <span>India.</span>
+
+        </h2>
+
+
+    </div>
+
+
+
+    <div class="gallery-wrapper">
+
+
+        <div class="gallery-track">
+
+
+
+            <!-- KERALA BACKWATERS -->
+
+            <div class="gallery-item reveal">
+
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Alleppey%20houseboat.jpg"
+                    alt="Kerala Backwaters">
+
+
+                <div class="gallery-location">
+
+                    KERALA
+
+                </div>
+
+
+                <div class="gallery-name">
+
+                    Peaceful Backwaters
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- RAJASTHAN -->
+
+            <div class="gallery-item reveal">
+
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Amber%20Fort-Jaipur.jpg"
+                    alt="Amber Fort Rajasthan">
+
+
+                <div class="gallery-location">
+
+                    RAJASTHAN
+
+                </div>
+
+
+                <div class="gallery-name">
+
+                    Royal Stories
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- AGRA -->
+
+            <div class="gallery-item reveal">
+
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Mehtab%20Bagh.jpg"
+                    alt="Mehtab Bagh Agra">
+
+
+                <div class="gallery-location">
+
+                    AGRA
+
+                </div>
+
+
+                <div class="gallery-name">
+
+                    Heritage Trails
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- RISHIKESH -->
+
+            <div class="gallery-item reveal">
+
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Ram%20Jhula%20Ghat%20in%20Rishikesh.jpg"
+                    alt="Rishikesh Ghat">
+
+
+                <div class="gallery-location">
+
+                    RISHIKESH
+
+                </div>
+
+
+                <div class="gallery-name">
+
+                    Along The Ganga
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- GOA -->
+
+            <div class="gallery-item reveal">
+
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Fort%20aguada.jpg"
+                    alt="Fort Aguada Goa">
+
+
+                <div class="gallery-location">
+
+                    GOA
+
+                </div>
+
+
+                <div class="gallery-name">
+
+                    Coastal Heritage
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- UDAIPUR -->
+
+            <div class="gallery-item reveal">
+
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/City%20Palace%20by%20lake%20Pichola%2C%20Udaipur.jpg"
+                    alt="Lake Pichola Udaipur">
+
+
+                <div class="gallery-location">
+
+                    UDAIPUR
+
+                </div>
+
+
+                <div class="gallery-name">
+
+                    Life By The Lake
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- VARANASI -->
+
+            <div class="gallery-item reveal">
+
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Ganga%20Aarti%20at%20Dashashwamedh%20Ghat%20Varanasi%2001.jpg"
+                    alt="Ganga Aarti Varanasi">
+
+
+                <div class="gallery-location">
+
+                    VARANASI
+
+                </div>
+
+
+                <div class="gallery-name">
+
+                    Spiritual Evenings
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- SOUTH INDIA -->
+
+            <div class="gallery-item reveal">
+
+
+                <img
+                    src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Chinese%20fishing%20nets%20in%20Kochi%2C%20Kerala.jpg"
+                    alt="Chinese Fishing Nets Kochi">
+
+
+                <div class="gallery-location">
+
+                    KOCHI
+
+                </div>
+
+
+                <div class="gallery-name">
+
+                    Coastal Traditions
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section id="contact">
+
+
+    <div class="contact-container">
+
+
+
+        <div class="contact-text reveal-left">
+
+
+            <p class="section-label">
+
+                GET IN TOUCH
+
+            </p>
+
+
+            <h2 class="section-title">
+
+                Ready To
+
+                <span>Explore?</span>
+
+            </h2>
+
+
+            <p>
+
+                Have a question or want to know more
+                about a destination?
+
+                Get in touch with Exploring World
+                and start planning your next journey.
+
+            </p>
+
+
+
+            <div class="contact-details">
+
+
+                <div class="contact-detail">
+
+
+                    <div class="contact-detail-icon">
+
+                        ✉
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>Email</strong>
+
+                        <span>
+
+                            Exploringworld2026@gmail.com
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="contact-detail">
+
+
+                    <div class="contact-detail-icon">
+
+                        ☎
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>Phone</strong>
+
+                        <span>
+
+                            +91 (020) 456-7890
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+
+                <div class="contact-detail">
+
+
+                    <div class="contact-detail-icon">
+
+                        📍
+
+                    </div>
+
+
+                    <div>
+
+                        <strong>Location</strong>
+
+                        <span>
+
+                            India
+
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- =====================================================
+             CONTACT FORM
+        ===================================================== -->
+
+        <div class="contact-form reveal-right">
+
+
+            <h3>
+
+                Send Us A Message
+
+            </h3>
+
+
+            <form
+                action="https://formspree.io/f/xvkokpbn"
+                method="POST">
+
+
+                <div class="input-group-custom">
+
+
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Your Name"
+                        required>
+
+
+                </div>
+
+
+
+                <div class="input-group-custom">
+
+
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Your Email"
+                        required>
+
+
+                </div>
+
+
+
+                <div class="input-group-custom">
+
+
+                    <textarea
+                        name="message"
+                        placeholder="Your Message"
+                        required></textarea>
+
+
+                </div>
+
+
+
+                <button
+                    type="submit"
+                    class="send-btn">
+
+                    SEND MESSAGE
+
+                </button>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="site-footer">
+
+
+    <div class="footer-content">
+
+
+        <div class="footer-logo">
+
+            Exploring <span>World</span>
+
+        </div>
+
+
+        <p class="footer-tagline">
+
+            Discover • Explore • Experience India
+
+        </p>
+
+
+        <p class="copyright">
+
+            © 2026 Exploring World
+
+        </p>
+
+
+    </div>
+
+
+</footer>
+
+
+
+<!-- =====================================================
+     JQUERY LIBRARY
+===================================================== -->
+
+<script
+    src="https://code.jquery.com/jquery-3.7.1.min.js">
+</script>
+
+
+
+<!-- =====================================================
+     BOOTSTRAP JAVASCRIPT
+===================================================== -->
+
+<script
+    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+
+<!-- =====================================================
+     JQUERY ANIMATIONS
+===================================================== -->
+
+<script>
+
+
+    /*
+       FUNCTION 1
+       Reveals elements when they enter the screen.
+    */
+
+    function revealElements(){
+
+        $(".reveal, .reveal-left, .reveal-right")
+        .each(function(){
+
+            let elementTop =
+                $(this).offset().top;
+
+            let windowBottom =
+                $(window).scrollTop()
+                +
+                $(window).height();
+
+
+            if(
+                windowBottom
+                >
+                elementTop + 70
+            ){
+
+                $(this)
+                .addClass("active");
+
+            }
+
+        });
+
+    }
+
+
+
+    /*
+       FUNCTION 2
+       Smoothly changes navbar appearance
+       after scrolling.
+    */
+
+    function navbarEffect(){
+
+        if(
+            $(window).scrollTop()
+            >
+            80
+        ){
+
+            $(".navbar")
+                .css({
+
+                    "background":
+                    "rgba(8,11,16,0.82)",
+
+                    "backdrop-filter":
+                    "blur(10px)"
+
+                });
+
+        }
+
+        else{
+
+            $(".navbar")
+                .css({
+
+                    "background":
+                    "transparent",
+
+                    "backdrop-filter":
+                    "none"
+
+                });
+
+        }
+
+    }
+
+
+
+    /*
+       FUNCTION 3
+       Small fade effect when page loads.
+    */
+
+    function pageEntrance(){
+
+        $(".home-content")
+            .hide()
+            .fadeIn(1000);
+
+    }
+
+
+
+    /*
+       JQUERY DOCUMENT READY
+    */
+
+    $(document).ready(function(){
+
+
+        pageEntrance();
+
+
+        revealElements();
+
+
+        navbarEffect();
+
+
+
+        /*
+           Run animations while scrolling.
+        */
+
+        $(window).on(
+            "scroll",
+            function(){
+
+                revealElements();
+
+                navbarEffect();
+
+            }
+        );
+
+
+
+        /*
+           Smooth scroll to About section.
+        */
+
+        $('a[href="#about"]')
+        .on(
+            "click",
+            function(event){
+
+                event.preventDefault();
+
+
+                $("html, body")
+                .animate({
+
+                    scrollTop:
+                    $("#about")
+                    .offset()
+                    .top
+
+                },700);
+
+            }
+        );
+
+
+    });
+
+
+</script>
+
+
+</body>
+
+</html>
